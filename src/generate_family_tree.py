@@ -25,9 +25,14 @@ import os
 import re
 from collections import defaultdict
 
+# Default paths
+DATA_DIR = "../data"
+OUTPUT_DIR = "../output"
+OUTPUT_DOT_DIR = "../output/dot"
+
 # Default filenames
-DEFAULT_INPUT_CSV = "family_data_improved.csv"
-DEFAULT_OUTPUT_DOT = "generated_family_tree.dot"
+DEFAULT_INPUT_CSV = f"{DATA_DIR}/family_data_improved.csv"
+DEFAULT_OUTPUT_DOT = f"{OUTPUT_DOT_DIR}/generated_family_tree.dot"
 
 # Colors and styles
 MALE_COLOR = "#BBDEFB"  # Light blue
@@ -296,6 +301,30 @@ def generate_dot_file(family_data, output_filename, person_name=None):
         
     return True
 
+def get_output_filename(base_path, person_name=None):
+    """Generate appropriate output filenames based on the person name."""
+    directory = os.path.dirname(base_path)
+    
+    # Make sure output directories exist
+    os.makedirs(directory, exist_ok=True)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
+    
+    # For ancestry trees, use a slug of the person's name
+    if person_name:
+        name_slug = person_name.lower().replace(' ', '_')
+        dot_file = f"{directory}/ancestry_{name_slug}.dot"
+        pdf_file = f"{OUTPUT_DIR}/ancestry_{name_slug}.pdf"
+        png_file = f"{OUTPUT_DIR}/ancestry_{name_slug}.png"
+    else:
+        # For full trees, use the base path
+        base_name = os.path.basename(base_path)
+        name_without_ext = os.path.splitext(base_name)[0]
+        dot_file = base_path
+        pdf_file = f"{OUTPUT_DIR}/{name_without_ext}.pdf"
+        png_file = f"{OUTPUT_DIR}/{name_without_ext}.png"
+    
+    return dot_file, pdf_file, png_file
+
 def main():
     """Main function to run the script."""
     # Get filenames and person name from command-line arguments
@@ -317,27 +346,30 @@ def main():
         print(f"Error: Input file '{input_csv}' not found.")
         sys.exit(1)
     
+    # Generate proper output filenames
+    dot_file, pdf_file, png_file = get_output_filename(output_dot, person_name)
+    
     # Read data
     print(f"Reading family data from '{input_csv}'...")
     family_data = read_family_data(input_csv)
     
     # Generate DOT file (either full tree or ancestry)
     if person_name:
-        print(f"Generating ancestry tree for '{person_name}' to '{output_dot}'...")
-        success = generate_dot_file(family_data, output_dot, person_name)
+        print(f"Generating ancestry tree for '{person_name}' to '{dot_file}'...")
+        success = generate_dot_file(family_data, dot_file, person_name)
         if not success:
             print(f"Failed to generate ancestry tree for '{person_name}'.")
             sys.exit(1)
     else:
-        print(f"Generating full family tree to '{output_dot}'...")
-        generate_dot_file(family_data, output_dot)
+        print(f"Generating full family tree to '{dot_file}'...")
+        generate_dot_file(family_data, dot_file)
     
     # Success message
     file_type = "ancestry tree" if person_name else "family tree"
     print(f"Done! To generate the PDF of the {file_type}, run:")
-    print(f"dot -Tpdf {output_dot} -o family_tree.pdf")
+    print(f"dot -Tpdf {dot_file} -o {pdf_file}")
     print("Or to generate PNG:")
-    print(f"dot -Tpng {output_dot} -o family_tree.png")
+    print(f"dot -Tpng {dot_file} -o {png_file}")
 
 if __name__ == "__main__":
     main()
