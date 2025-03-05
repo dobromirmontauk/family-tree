@@ -7,7 +7,7 @@ digraph FamilyTree {
     
     // Title for the family tree
     labelloc="t";
-    label="Family Tree";
+    label="Ancestry Tree";
     fontsize=24;
     
     // Generation 2

@@ -5,11 +5,14 @@
 # Change to the directory where the script is located
 cd "$(dirname "$0")"
 
+# Project directories
+DATA_DIR="../data"
+OUTPUT_DIR="../output"
+OUTPUT_DOT_DIR="../output/dot"
+
 # Default filenames
-INPUT_CSV="family_data_improved.csv"
-OUTPUT_DOT="generated_family_tree.dot"
-PDF_OUTPUT="generated_family_tree.pdf"
-PNG_OUTPUT="generated_family_tree.png"
+INPUT_CSV="${DATA_DIR}/family_data_improved.csv"
+OUTPUT_DOT="${OUTPUT_DOT_DIR}/generated_family_tree.dot"
 PERSON_NAME=""
 
 # Process command line arguments
@@ -26,41 +29,59 @@ fi
 # If a name is provided, use it to generate an ancestry tree
 if [ -n "$1" ]; then
     PERSON_NAME="$1"
-    # Create output filenames for the ancestry tree
-    NAME_SLUG=$(echo "$PERSON_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-    OUTPUT_DOT="ancestry_${NAME_SLUG}.dot"
-    PDF_OUTPUT="ancestry_${NAME_SLUG}.pdf"
-    PNG_OUTPUT="ancestry_${NAME_SLUG}.png"
 fi
 
-# Generate the DOT file
+# Ensure output directories exist
+mkdir -p "${OUTPUT_DIR}"
+mkdir -p "${OUTPUT_DOT_DIR}"
+
+# Generate the DOT file and extract output filenames
 if [ -n "$PERSON_NAME" ]; then
     echo "Generating ancestry tree for '$PERSON_NAME'..."
-    python3 generate_family_tree.py "$INPUT_CSV" "$OUTPUT_DOT" "$PERSON_NAME"
+    result=$(python3 generate_family_tree.py "$INPUT_CSV" "$OUTPUT_DOT" "$PERSON_NAME" 2>&1)
 else
     echo "Generating full family tree..."
-    python3 generate_family_tree.py
+    result=$(python3 generate_family_tree.py 2>&1)
 fi
 
-# Check if the DOT file was generated successfully
-if [ ! -f "./$OUTPUT_DOT" ]; then
+# Check if the Python script executed successfully
+if [ $? -ne 0 ]; then
+    echo "Error: Failed to generate DOT file."
+    echo "$result"
+    exit 1
+fi
+
+# Extract the DOT, PDF, and PNG filenames from the output
+DOT_FILE=$(echo "$result" | grep -o "dot -Tpdf [^ ]* -o" | sed 's/dot -Tpdf \(.*\) -o/\1/')
+PDF_FILE=$(echo "$result" | grep -o "\-o [^ ]*\.pdf" | sed 's/-o //')
+PNG_FILE=$(echo "$result" | grep -o "\-o [^ ]*\.png" | sed 's/-o //')
+
+# Verify we have filenames
+if [ -z "$DOT_FILE" ] || [ -z "$PDF_FILE" ] || [ -z "$PNG_FILE" ]; then
+    echo "Error: Could not determine output filenames."
+    echo "$result"
+    exit 1
+fi
+
+# Check if the DOT file was generated
+if [ ! -f "$DOT_FILE" ]; then
     echo "Error: DOT file was not generated."
     exit 1
 fi
 
 # Generate the PDF
 echo "Generating PDF..."
-dot -Tpdf "$OUTPUT_DOT" -o "$PDF_OUTPUT"
+dot -Tpdf "$DOT_FILE" -o "$PDF_FILE"
 
 # Generate the PNG
 echo "Generating PNG..."
-dot -Tpng "$OUTPUT_DOT" -o "$PNG_OUTPUT"
+dot -Tpng "$DOT_FILE" -o "$PNG_FILE"
 
 # Check if the files were generated successfully
-if [ -f "./$PDF_OUTPUT" ] && [ -f "./$PNG_OUTPUT" ]; then
+if [ -f "$PDF_FILE" ] && [ -f "$PNG_FILE" ]; then
     echo "Success! Generated files:"
-    echo "  - $(pwd)/$PDF_OUTPUT"
-    echo "  - $(pwd)/$PNG_OUTPUT"
+    echo "  - $PDF_FILE"
+    echo "  - $PNG_FILE"
 else
     echo "Error: Some files were not generated correctly."
     exit 1
