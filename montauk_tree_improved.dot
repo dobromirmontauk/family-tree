@@ -1,0 +1,342 @@
+digraph MontaukFamilyTree {
+    // Graph settings
+    rankdir=TB;
+    nodesep=0.8;
+    ranksep=1.2;
+    splines=ortho;
+    
+    // Node styles
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=11, margin="0.2,0.1"];
+    
+    // Edge styles for parent-child relationships
+    edge [dir=none, penwidth=1.2];
+    
+    // Title for the family tree
+    labelloc="t"; 
+    label="Montauk Family Tree";
+    fontsize=24;
+    
+    // Create invisible nodes for structure
+    node [shape=point, width=0, height=0, style=invis];
+    
+    // Generation 2 (around 1850-1875)
+    subgraph cluster_gen2 {
+        label="Generation 2 (born 1850-1875)";
+        style=filled;
+        color=lightgrey;
+        fontsize=16;
+        
+        // Morris Muntlack cluster
+        subgraph cluster_morris {
+            style=invis;
+            morris [label="Morris Muntlack\nb.c. 1861, d. 1974", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+        
+        // Brill family cluster
+        subgraph cluster_brill {
+            style=invis;
+            samuel [label="Samuel Brill", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            fanny [label="Fannie Ehrenberg", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            samuel -> fanny [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Epstein family cluster
+        subgraph cluster_epstein {
+            style=invis;
+            louis [label="Louis Epstein\nb. c. Aug 1860, d. 1942", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            dora [label="Dora Stargardt\nb. c. Sep 1863, d. c. 1930", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            louis -> dora [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+    }
+    
+    // Generation 3 (around 1875-1900)
+    subgraph cluster_gen3 {
+        label="Generation 3 (born 1875-1900)";
+        style=filled;
+        color=lightgrey;
+        fontsize=16;
+        
+        // David Muntlack branch
+        subgraph cluster_david {
+            style=invis;
+            david [label="David Muntlack\nb.c. 1890", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+        
+        // Feldman family
+        subgraph cluster_feldman {
+            style=invis;
+            harry [label="Harry Feldman\nb.c. 1886, d. May 1972", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            celia [label="Celia Brill\nb.c. 1896, d. May 1972", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            harry -> celia [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Sam Montauk branch
+        subgraph cluster_sam {
+            style=invis;
+            sam [label="Sam Muntlack (Montauk)\nb. Nov 1897, d. Oct 6, 1984", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            sadie [label="Sadie Epstein\nb. Nov 30, 1897, d. Oct 8, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            sam -> sadie [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Epstein children
+        subgraph cluster_epstein_children {
+            style=invis;
+            henry [label="Henry Epstein\nb. Apr 23, 1883", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            rose [label="Rose Epstein\nb.c. 1886", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            frank [label="Frank Epstein\nb. Jan 17, 1891, d. Aug 1, 1957", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+    }
+    
+    // Generation 4 (around 1900-1925)
+    subgraph cluster_gen4 {
+        label="Generation 4 (born 1900-1925)";
+        style=filled;
+        color=lightgrey;
+        fontsize=16;
+        
+        // Ernest and Clare
+        subgraph cluster_ernest {
+            style=invis;
+            ernest [label="Ernest Montauk\nb. Jul 13, 1918", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            clare [label="Clare Feldman\nb. Jun 30, 1920, d. 1963", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            ernest -> clare [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Harriet and William
+        subgraph cluster_harriet {
+            style=invis;
+            harriet [label="Harriet Feldman\nb. Sep 13, 1930, d. May 5, 2003", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            william [label="William Roisen\nb. May 26, 1926", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            // Draw marriage line
+            harriet -> william [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Ruth and Sam Ressler
+        subgraph cluster_ruth {
+            style=invis;
+            ruth [label="Ruth Feldman", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            sam_ressler [label="Sam Ressler", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            // Draw marriage line
+            ruth -> sam_ressler [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+    }
+    
+    // Generation 5 (around 1925-1950)
+    subgraph cluster_gen5 {
+        label="Generation 5 (born 1925-1950)";
+        style=filled;
+        color=lightgrey;
+        fontsize=16;
+        
+        // Susan and Stan
+        subgraph cluster_susan {
+            style=invis;
+            susan [label="Susan Montauk\nb. Dec 14, 1943", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            stan [label="Stan Loeb", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            // Draw marriage line
+            susan -> stan [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Lance and Krystyna
+        subgraph cluster_lance {
+            style=invis;
+            lance [label="Lance Montauk\nb. Oct 8, 1947", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            krystyna [label="Krystyna\nb. Apr 22, 1956", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            lance -> krystyna [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Kathi and Howard
+        subgraph cluster_kathi {
+            style=invis;
+            kathi [label="Kathi Roisen\nb. Mar 5, 1956", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            howard [label="Howard Goldenberg\nb. Dec 6, 1949", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            // Draw marriage line
+            kathi -> howard [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Jill Roisen
+        subgraph cluster_jill {
+            style=invis;
+            jill [label="Jill Roisen\nb. Dec 30, 1959", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        }
+        
+        // Jeffrey Ressler
+        subgraph cluster_jeffrey {
+            style=invis;
+            jeffrey [label="Jeffrey Ressler\nb. May 29, 1943", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+        
+        // Allen and Ann
+        subgraph cluster_allen {
+            style=invis;
+            allen [label="Allen Ressler\nb. Jun 8, 1945", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            ann [label="Ann Nicklason", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            allen -> ann [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+    }
+    
+    // Generation 6 (around 1950-1975)
+    subgraph cluster_gen6 {
+        label="Generation 6 (born 1950-1975)";
+        style=filled;
+        color=lightgrey;
+        fontsize=16;
+        
+        // Ben and Amber
+        subgraph cluster_ben {
+            style=invis;
+            ben [label="Ben Coulter", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            amber [label="Amber", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            ben -> amber [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Dobromir and Barbara
+        subgraph cluster_dobromir {
+            style=invis;
+            dobromir [label="Dobromir Montauk\nb. Nov 3, 1981", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            barbara [label="Barbara Beres\nb. Nov 14, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            dobromir -> barbara [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Iliana
+        subgraph cluster_iliana {
+            style=invis;
+            iliana [label="Iliana Montauk\nb. Dec 24, 1982", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        }
+        
+        // Sam and Joshua Goldenberg
+        subgraph cluster_goldenberg_children {
+            style=invis;
+            sam_goldenberg [label="Sam Goldenberg\nb. Feb 24, 1988", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            joshua [label="Joshua Goldenberg\nb. Oct 15, 1990", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+        
+        // Jason and Vivien
+        subgraph cluster_jason {
+            style=invis;
+            jason [label="Jason Ressler\nb. Jul 4, 1970", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            vivien [label="Vivien Lindenfeld\nb. Oct 27, 1969", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+            // Draw marriage line
+            jason -> vivien [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        }
+        
+        // Gary and Jordan
+        subgraph cluster_gary_jordan {
+            style=invis;
+            gary [label="Gary Ressler\nb. Apr 11, 1974", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+            jordan [label="Jordan Ressler\nb. 1981, d. Nov 17, 2004", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+    }
+    
+    // Generation 7 (around 1975-2000)
+    subgraph cluster_gen7 {
+        label="Generation 7 (born 1975-2000)";
+        style=filled;
+        color=lightgrey;
+        fontsize=16;
+        
+        // Kajetan
+        subgraph cluster_kajetan {
+            style=invis;
+            kajetan [label="Kajetan Montauk\nb. Mar 25, 2010", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        }
+    }
+    
+    // Invisible nodes for creating the family tree structure
+    node [shape=point, width=0, height=0, style=invis];
+    
+    // Parent-child connections across generations using invisible nodes
+    
+    // Gen 2 to Gen 3
+    morris_to_david [shape=point, style=invis];
+    morris -> morris_to_david [style=solid];
+    morris_to_david -> david [style=solid];
+    
+    brill_to_celia [shape=point, style=invis];
+    samuel -> brill_to_celia [style=solid];
+    fanny -> brill_to_celia [style=solid];
+    brill_to_celia -> celia [style=solid];
+    
+    epstein_to_children [shape=point, style=invis];
+    louis -> epstein_to_children [style=solid];
+    dora -> epstein_to_children [style=solid];
+    epstein_to_children -> henry [style=solid];
+    epstein_to_children -> rose [style=solid];
+    epstein_to_children -> frank [style=solid];
+    epstein_to_children -> sadie [style=solid];
+    
+    // Gen 3 to Gen 4
+    david_to_sam [shape=point, style=invis];
+    david -> david_to_sam [style=solid];
+    david_to_sam -> sam [style=solid];
+    
+    feldman_to_children [shape=point, style=invis];
+    harry -> feldman_to_children [style=solid];
+    celia -> feldman_to_children [style=solid];
+    feldman_to_children -> clare [style=solid];
+    feldman_to_children -> harriet [style=solid];
+    feldman_to_children -> ruth [style=solid];
+    
+    muntlack_to_ernest [shape=point, style=invis];
+    sam -> muntlack_to_ernest [style=solid];
+    sadie -> muntlack_to_ernest [style=solid];
+    muntlack_to_ernest -> ernest [style=solid];
+    
+    // Gen 4 to Gen 5
+    ernest_to_children [shape=point, style=invis];
+    ernest -> ernest_to_children [style=solid];
+    clare -> ernest_to_children [style=solid];
+    ernest_to_children -> susan [style=solid];
+    ernest_to_children -> lance [style=solid];
+    
+    harriet_to_children [shape=point, style=invis];
+    harriet -> harriet_to_children [style=solid];
+    william -> harriet_to_children [style=solid];
+    harriet_to_children -> kathi [style=solid];
+    harriet_to_children -> jill [style=solid];
+    
+    ressler_to_children [shape=point, style=invis];
+    ruth -> ressler_to_children [style=solid];
+    sam_ressler -> ressler_to_children [style=solid];
+    ressler_to_children -> jeffrey [style=solid];
+    ressler_to_children -> allen [style=solid];
+    
+    // Gen 5 to Gen 6
+    susan_to_ben [shape=point, style=invis];
+    susan -> susan_to_ben [style=solid];
+    stan -> susan_to_ben [style=solid];
+    susan_to_ben -> ben [style=solid];
+    
+    lance_to_children [shape=point, style=invis];
+    lance -> lance_to_children [style=solid];
+    krystyna -> lance_to_children [style=solid];
+    lance_to_children -> dobromir [style=solid];
+    lance_to_children -> iliana [style=solid];
+    
+    kathi_to_children [shape=point, style=invis];
+    kathi -> kathi_to_children [style=solid];
+    howard -> kathi_to_children [style=solid];
+    kathi_to_children -> sam_goldenberg [style=solid];
+    kathi_to_children -> joshua [style=solid];
+    
+    jeffrey_to_children [shape=point, style=invis];
+    jeffrey -> jeffrey_to_children [style=solid];
+    jeffrey_to_children -> jason [style=solid];
+    jeffrey_to_children -> gary [style=solid];
+    jeffrey_to_children -> jordan [style=solid];
+    
+    // Gen 6 to Gen 7
+    dobromir_to_kajetan [shape=point, style=invis];
+    dobromir -> dobromir_to_kajetan [style=solid];
+    barbara -> dobromir_to_kajetan [style=solid];
+    dobromir_to_kajetan -> kajetan [style=solid];
+}

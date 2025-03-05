@@ -1,0 +1,284 @@
+digraph FamilyTree {
+    // Graph settings
+    rankdir=TB;
+    nodesep=0.8;
+    ranksep=1.2;
+    splines=ortho;
+    
+    // Title for the family tree
+    labelloc="t";
+    label="Family Tree";
+    fontsize=24;
+    
+    // Generation 2
+    subgraph cluster_gen2 {
+        label="Generation 2";
+        style=filled;
+        color="#E0E0E0";
+        fontsize=16;
+
+    morris_muntlack [label="Morris Muntlack\nb. c. 1861, d. 1974", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    samuel_brill [label="Samuel Brill", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    fannie_ehrenberg [label="Fannie Ehrenberg", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    louis_epstein [label="Louis Epstein\nb. c. Aug 1860, d. 1942", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    dora_stargardt [label="Dora Stargardt\nb. c. Sep 1863, d. c. 1930", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    }
+
+    // Generation 3
+    subgraph cluster_gen3 {
+        label="Generation 3";
+        style=filled;
+        color="#F5F5F5";
+        fontsize=16;
+
+    david_muntlack [label="David Muntlack\nb. c. 1890", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    sam_muntlack_montauk [label="Sam Muntlack (Montauk)\nb. Nov 1897, d. Oct 6, 1984", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    sadie_epstein [label="Sadie Epstein\nb. Nov 30, 1897, d. Oct 8, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    harold_muntlack [label="Harold Muntlack\nb. 1897, d. Mar 1934", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    celia_brill [label="Celia Brill\nb. c. 1896, d. May 1972", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    harry_feldman [label="Harry Feldman\nb. c. 1886, d. May 1972", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    tillie_brill [label="Tillie Brill\nb. c. 1891, d. Sep 1941", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    jack_haber [label="Jack Haber\nb. c. 1885", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    henry_epstein [label="Henry Epstein\nb. Apr 23, 1883", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    rose_epstein [label="Rose Epstein\nb. c. 1886", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    jack_silverman [label="Jack Silverman\nb. b. 1883", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    frank_epstein [label="Frank Epstein\nb. Jan 17, 1891, d. Aug 1, 1957", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    wanda [label="Wanda", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Generation 4
+    subgraph cluster_gen4 {
+        label="Generation 4";
+        style=filled;
+        color="#FAFAFA";
+        fontsize=16;
+
+    clare_feldman [label="Clare Feldman\nb. Jun 30, 1920, d. 1963", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    ernest_montauk [label="Ernest Montauk\nb. Jul 13, 1918", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    harriet_feldman [label="Harriet Feldman\nb. Sep 13, 1930, d. May 5, 2003", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    william_roisen [label="William Roisen\nb. May 26, 1926", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    sam_haber [label="Sam Haber\nb. 1914", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    dottie [label="Dottie\nb. Dec 25, 1919, d. Feb 2, 2002", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    murray_haber [label="Murray Haber", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    shirley [label="Shirley", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    jeanne_haber [label="Jeanne Haber\nb. 1942", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    ruth_feldman [label="Ruth Feldman", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    sam_ressler [label="Sam Ressler", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    irene_silverman [label="Irene Silverman\nb. c. 1908, d. Aug 1, 1957", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    }
+
+    // Generation 5
+    subgraph cluster_gen5 {
+        label="Generation 5";
+        style=filled;
+        color="#EEEEEE";
+        fontsize=16;
+
+    susan_montauk [label="Susan Montauk\nb. Dec 14, 1943", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    stan_loeb [label="Stan Loeb", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    lance_montauk [label="Lance Montauk\nb. Oct 8, 1947", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    krystyna [label="Krystyna\nb. Apr 22, 1956", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    kathi_roisen [label="Kathi Roisen\nb. Mar 5, 1956", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    howard_goldenberg [label="Howard Goldenberg\nb. Dec 6, 1949", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    jill_roisen [label="Jill Roisen\nb. Dec 30, 1959", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    jeffrey_ressler [label="Jeffrey Ressler\nb. May 29, 1943", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    allen_ressler [label="Allen Ressler\nb. Jun 8, 1945", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    ann_nicklason [label="Ann Nicklason\nb. Feb 15", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    sophia_ressler [label="Sophia Ressler", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Generation 6
+    subgraph cluster_gen6 {
+        label="Generation 6";
+        style=filled;
+        color="#F5F5F5";
+        fontsize=16;
+
+    ben_coulter [label="Ben Coulter", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    amber [label="Amber", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    dobromir_montauk [label="Dobromir Montauk\nb. Nov 3, 1981", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    barbara_beres [label="Barbara Beres\nb. Nov 14, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    iliana_montauk [label="Iliana Montauk\nb. Dec 24, 1982", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    sam_goldenberg [label="Sam Goldenberg\nb. Feb 24, 1988", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    joshua_goldenberg [label="Joshua Goldenberg\nb. Oct 15, 1990", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    jason_ressler [label="Jason Ressler\nb. Jul 4, 1970", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    vivien_lindenfeld [label="Vivien Lindenfeld\nb. Oct 27, 1969", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    gary_ressler [label="Gary Ressler\nb. Apr 11, 1974", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    jordan_ressler [label="Jordan Ressler\nb. 1981, d. Nov 17, 2004", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    samara_ressler [label="Samara Ressler\nb. Mar 10, 1980", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    elizabeth [label="Elizabeth", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Generation 7
+    subgraph cluster_gen7 {
+        label="Generation 7";
+        style=filled;
+        color="#E0E0E0";
+        fontsize=16;
+
+    kajetan_montauk [label="Kajetan Montauk\nb. Mar 25, 2010", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    justin_ressler [label="Justin Ressler\nb. Apr 1983, d. 1997", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    jessica_ressler [label="Jessica Ressler", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    samuel_jay_ressler [label="Samuel Jay Ressler", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Invisible nodes for family connections
+    node [shape=point, width=0, height=0, style=invis, label=""];
+
+    // Marriage connections
+    edge [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    sadie_epstein -> sam_muntlack_montauk;
+    sadie_epstein -> sam_muntlack;
+    fannie_ehrenberg -> samuel_brill;
+    celia_brill -> harry_feldman;
+    clare_feldman -> ernest_montauk;
+    stan_loeb -> susan_montauk;
+    amber -> ben_coulter;
+    krystyna -> lance_montauk;
+    barbara_beres -> dobromir_montauk;
+    harriet_feldman -> william_roisen;
+    howard_goldenberg -> kathi_roisen;
+    jack_haber -> tillie_brill;
+    dottie -> sam_haber;
+    murray_haber -> shirley;
+    jeanne_haber -> lou_abramson;
+    jake_gomez -> jeanne_haber;
+    ruth_feldman -> sam_ressler;
+    jason_ressler -> vivien_lindenfeld;
+    allen_ressler -> ann_nicklason;
+    elizabeth -> samara_ressler;
+    dora_stargardt -> louis_epstein;
+    jack_silverman -> rose_epstein;
+    frank_epstein -> wanda;
+
+    // Parent-child connections
+    edge [dir=none, style=solid, penwidth=1.2, color="#000000"];
+    junction_0 [shape=point, width=0, height=0, style=invis, label=""];
+    morris_muntlack -> junction_0;
+    junction_0 -> david_muntlack;
+    junction_1 [shape=point, width=0, height=0, style=invis, label=""];
+    david_muntlack -> junction_1;
+    junction_1 -> sam_muntlack;
+    junction_2 [shape=point, width=0, height=0, style=invis, label=""];
+    david_muntlack -> junction_2;
+    junction_2 -> harold_muntlack;
+    junction_3 [shape=point, width=0, height=0, style=invis, label=""];
+    sam_muntlack_montauk -> junction_3;
+    sadie_epstein -> junction_3;
+    junction_3 -> ernest_montauk;
+    junction_4 [shape=point, width=0, height=0, style=invis, label=""];
+    samuel_brill -> junction_4;
+    fannie_ehrenberg -> junction_4;
+    junction_4 -> celia_brill;
+    junction_5 [shape=point, width=0, height=0, style=invis, label=""];
+    samuel_brill -> junction_5;
+    fannie_ehrenberg -> junction_5;
+    junction_5 -> tillie_brill;
+    junction_6 [shape=point, width=0, height=0, style=invis, label=""];
+    celia_brill -> junction_6;
+    harry_feldman -> junction_6;
+    junction_6 -> clare_feldman;
+    junction_7 [shape=point, width=0, height=0, style=invis, label=""];
+    celia_brill -> junction_7;
+    harry_feldman -> junction_7;
+    junction_7 -> harriet_feldman;
+    junction_8 [shape=point, width=0, height=0, style=invis, label=""];
+    harry_feldman -> junction_8;
+    junction_8 -> ruth_feldman;
+    junction_9 [shape=point, width=0, height=0, style=invis, label=""];
+    clare_feldman -> junction_9;
+    ernest_montauk -> junction_9;
+    junction_9 -> susan_montauk;
+    junction_10 [shape=point, width=0, height=0, style=invis, label=""];
+    clare_feldman -> junction_10;
+    ernest_montauk -> junction_10;
+    junction_10 -> lance_montauk;
+    junction_11 [shape=point, width=0, height=0, style=invis, label=""];
+    susan_montauk -> junction_11;
+    stan_loeb -> junction_11;
+    junction_11 -> ben_coulter;
+    junction_12 [shape=point, width=0, height=0, style=invis, label=""];
+    lance_montauk -> junction_12;
+    krystyna -> junction_12;
+    junction_12 -> dobromir_montauk;
+    junction_13 [shape=point, width=0, height=0, style=invis, label=""];
+    lance_montauk -> junction_13;
+    krystyna -> junction_13;
+    junction_13 -> iliana_montauk;
+    junction_14 [shape=point, width=0, height=0, style=invis, label=""];
+    dobromir_montauk -> junction_14;
+    barbara_beres -> junction_14;
+    junction_14 -> kajetan_montauk;
+    junction_15 [shape=point, width=0, height=0, style=invis, label=""];
+    harriet_feldman -> junction_15;
+    william_roisen -> junction_15;
+    junction_15 -> kathi_roisen;
+    junction_16 [shape=point, width=0, height=0, style=invis, label=""];
+    harriet_feldman -> junction_16;
+    william_roisen -> junction_16;
+    junction_16 -> jill_roisen;
+    junction_17 [shape=point, width=0, height=0, style=invis, label=""];
+    kathi_roisen -> junction_17;
+    howard_goldenberg -> junction_17;
+    junction_17 -> sam_goldenberg;
+    junction_18 [shape=point, width=0, height=0, style=invis, label=""];
+    kathi_roisen -> junction_18;
+    howard_goldenberg -> junction_18;
+    junction_18 -> joshua_goldenberg;
+    junction_19 [shape=point, width=0, height=0, style=invis, label=""];
+    tillie_brill -> junction_19;
+    jack_haber -> junction_19;
+    junction_19 -> sam_haber;
+    junction_20 [shape=point, width=0, height=0, style=invis, label=""];
+    tillie_brill -> junction_20;
+    jack_haber -> junction_20;
+    junction_20 -> murray_haber;
+    junction_21 [shape=point, width=0, height=0, style=invis, label=""];
+    tillie_brill -> junction_21;
+    jack_haber -> junction_21;
+    junction_21 -> jeanne_haber;
+    junction_22 [shape=point, width=0, height=0, style=invis, label=""];
+    ruth_feldman -> junction_22;
+    sam_ressler -> junction_22;
+    junction_22 -> jeffrey_ressler;
+    junction_23 [shape=point, width=0, height=0, style=invis, label=""];
+    sam_ressler -> junction_23;
+    junction_23 -> allen_ressler;
+    junction_24 [shape=point, width=0, height=0, style=invis, label=""];
+    jeffrey_ressler -> junction_24;
+    junction_24 -> jason_ressler;
+    junction_25 [shape=point, width=0, height=0, style=invis, label=""];
+    jeffrey_ressler -> junction_25;
+    junction_25 -> gary_ressler;
+    junction_26 [shape=point, width=0, height=0, style=invis, label=""];
+    jeffrey_ressler -> junction_26;
+    junction_26 -> jordan_ressler;
+    junction_27 [shape=point, width=0, height=0, style=invis, label=""];
+    samara_ressler -> junction_27;
+    elizabeth -> junction_27;
+    junction_27 -> justin_ressler;
+    junction_28 [shape=point, width=0, height=0, style=invis, label=""];
+    samara_ressler -> junction_28;
+    elizabeth -> junction_28;
+    junction_28 -> jessica_ressler;
+    junction_29 [shape=point, width=0, height=0, style=invis, label=""];
+    samara_ressler -> junction_29;
+    elizabeth -> junction_29;
+    junction_29 -> samuel_jay_ressler;
+    junction_30 [shape=point, width=0, height=0, style=invis, label=""];
+    louis_epstein -> junction_30;
+    dora_stargardt -> junction_30;
+    junction_30 -> henry_epstein;
+    junction_31 [shape=point, width=0, height=0, style=invis, label=""];
+    louis_epstein -> junction_31;
+    dora_stargardt -> junction_31;
+    junction_31 -> rose_epstein;
+    junction_32 [shape=point, width=0, height=0, style=invis, label=""];
+    louis_epstein -> junction_32;
+    dora_stargardt -> junction_32;
+    junction_32 -> frank_epstein;
+    junction_33 [shape=point, width=0, height=0, style=invis, label=""];
+    rose_epstein -> junction_33;
+    jack_silverman -> junction_33;
+    junction_33 -> irene_silverman;
+}

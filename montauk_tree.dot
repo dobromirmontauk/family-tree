@@ -1,0 +1,154 @@
+digraph MontaukFamilyTree {
+    // Graph settings
+    rankdir=TB;
+    nodesep=0.8;
+    ranksep=1.0;
+    
+    // Node styles
+    node [shape=box, style="filled,rounded", fontname="Arial", fontsize=11, margin="0.2,0.1"];
+    
+    // Edge styles for parent-child relationships
+    edge [dir=none, penwidth=1.2];
+    
+    // Male and female styles
+    node [fillcolor="#BBDEFB"]; // Default is male (light blue)
+    
+    // Invisible nodes for layout
+    node [shape=circle, width=0.01, style=invis, label=""];
+    
+    // First generation - earliest known ancestors for both lines
+    {
+        rank=same;
+        morris [label="Morris Muntlack\nb.c. 1861, d. 1974", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        
+        samuel [label="Samuel Brill", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        fanny [label="Fannie Ehrenberg", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        // Marriage connection
+        samuel -> fanny [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    }
+    
+    // Second generation
+    {
+        rank=same;
+        david [label="David Muntlack\nb.c. 1890", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        
+        celia [label="Celia Brill\nb.c. 1896, d. May 1972", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        harry [label="Harry Feldman\nb.c. 1886, d. May 1972", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        
+        // Marriage connection
+        celia -> harry [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    }
+    
+    // Third generation
+    {
+        rank=same;
+        sam [label="Sam Muntlack (Montauk)\nb. Nov 1897, d. Oct 6, 1984", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        sadie [label="Sadie Epstein\nb. Nov 30, 1897, d. Oct 8, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        clare [label="Clare Feldman\nb. Jun 30, 1920, d. 1963", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        // Marriage connection
+        sam -> sadie [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    }
+    
+    // Fourth generation
+    {
+        rank=same;
+        ernest [label="Ernest Montauk\nb. Jul 13, 1918", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        
+        // Marriage connection
+        ernest -> clare [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    }
+    
+    // Fifth generation - children of Ernest and Clare
+    {
+        rank=same;
+        susan [label="Susan Montauk\nb. Dec 14, 1943", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        stan [label="Stan Loeb", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        
+        lance [label="Lance Montauk\nb. Oct 8, 1947", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        krystyna [label="Krystyna\nb. Apr 22, 1956", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        // Marriage connections
+        susan -> stan [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        lance -> krystyna [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    }
+    
+    // Sixth generation - grandchildren
+    {
+        rank=same;
+        ben [label="Ben Coulter", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        amber [label="Amber (ward)", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        dobromir [label="Dobromir Montauk\nb. Nov 3, 1981", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+        barbara [label="Barbara Beres\nb. Nov 14, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        iliana [label="Iliana Montauk\nb. Dec 24, 1982", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+        
+        // Marriage connections
+        ben -> amber [dir=none, style=solid, penwidth=2.0, color="#555555"];
+        dobromir -> barbara [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    }
+    
+    // Seventh generation - great-grandchildren
+    {
+        rank=same;
+        kajetan [label="Kajetan Montauk\nb. Mar 25, 2010", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+    
+    // Invisible nodes for structuring parent-child connections
+    mt1 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    mt2 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    mt3 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    mt4 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    mt5 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    mt6 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    mt7 [shape=circle, width=0.01, height=0.01, style=invis, label=""];
+    
+    // Brill family line
+    samuel -> mt1 [dir=none, style=solid];
+    fanny -> mt1 [dir=none, style=solid];
+    mt1 -> celia [dir=none, style=solid];
+    
+    // Muntlack family line
+    morris -> david [dir=none, style=solid];
+    david -> sam [dir=none, style=solid];
+    
+    // Feldman family line
+    celia -> mt2 [dir=none, style=solid];
+    harry -> mt2 [dir=none, style=solid];
+    mt2 -> clare [dir=none, style=solid];
+    
+    // Montauk family line - Sam and Sadie to Ernest
+    sam -> mt3 [dir=none, style=solid];
+    sadie -> mt3 [dir=none, style=solid];
+    mt3 -> ernest [dir=none, style=solid];
+    
+    // Ernest and Clare to their children
+    ernest -> mt4 [dir=none, style=solid];
+    clare -> mt4 [dir=none, style=solid];
+    mt4 -> susan [dir=none, style=solid];
+    mt4 -> lance [dir=none, style=solid];
+    
+    // Susan and Stan to their child
+    susan -> mt5 [dir=none, style=solid];
+    stan -> mt5 [dir=none, style=solid];
+    mt5 -> ben [dir=none, style=solid];
+    
+    // Lance and Krystyna to their children
+    lance -> mt6 [dir=none, style=solid];
+    krystyna -> mt6 [dir=none, style=solid];
+    mt6 -> dobromir [dir=none, style=solid];
+    mt6 -> iliana [dir=none, style=solid];
+    
+    // Dobromir and Barbara to their child
+    dobromir -> mt7 [dir=none, style=solid];
+    barbara -> mt7 [dir=none, style=solid];
+    mt7 -> kajetan [dir=none, style=solid];
+    
+    // Graph labels and styling
+    label = "Montauk Family Tree";
+    fontsize = 20;
+    labelloc = "t";
+}

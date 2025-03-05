@@ -1,0 +1,59 @@
+Full Name,Family Name,Maiden Name,Date of Birth,Date of Death,Spouse 1,Spouse 2,Child 1,Child 2,Child 3,Generation
+"Morris Muntlack","Muntlack","","c. 1861","1974","","","David Muntlack","","",2
+"David Muntlack","Muntlack","","c. 1890","","","","Sam Muntlack","Harold Muntlack","",3
+"Sam Muntlack (Montauk)","Montauk","","Nov 1897","Oct 6, 1984","Sadie Epstein","","Ernest Montauk","","",3
+"Sadie Epstein","Epstein","Epstein","Nov 30, 1897","Oct 8, 1984","Sam Muntlack","","Ernest Montauk","","",3
+"Harold Muntlack","Muntlack","","1897","Mar 1934","","","","","",3
+"Samuel Brill","Brill","","","","Fannie Ehrenberg","","Celia Brill","Tillie Brill","",2
+"Fannie Ehrenberg","Brill","Ehrenberg","","","Samuel Brill","","Celia Brill","Tillie Brill","",2
+"Celia Brill","Feldman","Brill","c. 1896","May 1972","Harry Feldman","","Clare Feldman","Harriet Feldman","",3
+"Harry Feldman","Feldman","","c. 1886","May 1972","Celia Brill","","Clare Feldman","Harriet Feldman","Ruth Feldman",3
+"Clare Feldman","Montauk","Feldman","Jun 30, 1920","1963","Ernest Montauk","","Susan Montauk","Lance Montauk","",4
+"Ernest Montauk","Montauk","","Jul 13, 1918","","Clare Feldman","","Susan Montauk","Lance Montauk","",4
+"Susan Montauk","Montauk","Montauk","Dec 14, 1943","","Stan Loeb","","Ben Coulter","","",5
+"Stan Loeb","Loeb","","","","Susan Montauk","","Ben Coulter","","",5
+"Ben Coulter","Coulter","","","","Amber","","","","",6
+"Amber","","","","","Ben Coulter","","","","",6
+"Lance Montauk","Montauk","","Oct 8, 1947","","Krystyna","","Dobromir Montauk","Iliana Montauk","",5
+"Krystyna","Montauk","","Apr 22, 1956","","Lance Montauk","","Dobromir Montauk","Iliana Montauk","",5
+"Dobromir Montauk","Montauk","","Nov 3, 1981","","Barbara Beres","","Kajetan Montauk","","",6
+"Barbara Beres","Montauk","Beres","Nov 14, 1984","","Dobromir Montauk","","Kajetan Montauk","","",6
+"Iliana Montauk","Montauk","Montauk","Dec 24, 1982","","","","","","",6
+"Kajetan Montauk","Montauk","","Mar 25, 2010","","","","","","",7
+"Harriet Feldman","Roisen","Feldman","Sep 13, 1930","May 5, 2003","William Roisen","","Kathi Roisen","Jill Roisen","",4
+"William Roisen","Roisen","","May 26, 1926","","Harriet Feldman","","Kathi Roisen","Jill Roisen","",4
+"Kathi Roisen","Goldenberg","Roisen","Mar 5, 1956","","Howard Goldenberg","","Sam Goldenberg","Joshua Goldenberg","",5
+"Howard Goldenberg","Goldenberg","","Dec 6, 1949","","Kathi Roisen","","Sam Goldenberg","Joshua Goldenberg","",5
+"Sam Goldenberg","Goldenberg","","Feb 24, 1988","","","","","","",6
+"Joshua Goldenberg","Goldenberg","","Oct 15, 1990","","","","","","",6
+"Jill Roisen","Roisen","Roisen","Dec 30, 1959","","","","","","",5
+"Tillie Brill","Haber","Brill","c. 1891","Sep 1941","Jack Haber","","Sam Haber","Murray Haber","Jeanne Haber",3
+"Jack Haber","Haber","","c. 1885","","Tillie Brill","","Sam Haber","Murray Haber","Jeanne Haber",3
+"Sam Haber","Haber","","1914","","Dottie","","","","",4
+"Dottie","Haber","","Dec 25, 1919","Feb 2, 2002","Sam Haber","","","","",4
+"Murray Haber","Haber","","","","Shirley","","","","",4
+"Shirley","Haber","","","","Murray Haber","","","","",4
+"Jeanne Haber","Haber","Haber","1942","","Lou Abramson","Jake Gomez","","","",4
+"Ruth Feldman","Ressler","Feldman","","","Sam Ressler","","Jeffrey Ressler","","",4
+"Sam Ressler","Ressler","","","","Ruth Feldman","","Jeffrey Ressler","Allen Ressler","",4
+"Jeffrey Ressler","Ressler","","May 29, 1943","","","","Jason Ressler","Gary Ressler","Jordan Ressler",5
+"Jason Ressler","Ressler","","Jul 4, 1970","","Vivien Lindenfeld","","","","",6
+"Vivien Lindenfeld","Ressler","Lindenfeld","Oct 27, 1969","","Jason Ressler","","","","",6
+"Gary Ressler","Ressler","","Apr 11, 1974","","","","","","",6
+"Jordan Ressler","Ressler","","1981","Nov 17, 2004","","","","","",6
+"Allen Ressler","Ressler","","Jun 8, 1945","","Ann Nicklason","","","","",5
+"Ann Nicklason","Ressler","Nicklason","Feb 15","","Allen Ressler","","","","",5
+"Sophia Ressler","Ressler","","","","","","","","",5
+"Samara Ressler","Ressler","","Mar 10, 1980","","Elizabeth","","Justin Ressler","Jessica Ressler","Samuel Jay Ressler",6
+"Elizabeth","Ressler","","","","Samara Ressler","","Justin Ressler","Jessica Ressler","Samuel Jay Ressler",6
+"Justin Ressler","Ressler","","Apr 1983","1997","","","","","",7
+"Jessica Ressler","Ressler","","","","","","","","",7
+"Samuel Jay Ressler","Ressler","","","","","","","","",7
+"Louis Epstein","Epstein","","c. Aug 1860","1942","Dora Stargardt","","Henry Epstein","Rose Epstein","Frank Epstein",2
+"Dora Stargardt","Epstein","Stargardt","c. Sep 1863","c. 1930","Louis Epstein","","Henry Epstein","Rose Epstein","Frank Epstein",2
+"Henry Epstein","Epstein","","Apr 23, 1883","","","","","","",3
+"Rose Epstein","Silverman","Epstein","c. 1886","","Jack Silverman","","Irene Silverman","","",3
+"Jack Silverman","Silverman","","b. 1883","","Rose Epstein","","Irene Silverman","","",3
+"Irene Silverman","Silverman","Silverman","c. 1908","Aug 1, 1957","","","","","",4
+"Frank Epstein","Epstein","","Jan 17, 1891","Aug 1, 1957","Wanda","","","","",3
+"Wanda","Epstein","","","","Frank Epstein","","","","",3

@@ -1,0 +1,171 @@
+digraph MontaukFamilyTree {
+    // Graph settings
+    rankdir=TB;
+    splines=ortho;
+    nodesep=0.8;
+    ranksep=0.8;
+    
+    // Node styles
+    node [shape=box, style="filled,rounded", fillcolor=lightblue, fontname="Arial", fontsize=10, margin="0.1,0.1"];
+    
+    // Edge styles
+    edge [dir=none, penwidth=1.5];
+
+    // Define custom node style based on gender
+    node [shape=box, style="filled,rounded"];
+    
+    // Ancestors generation (Muntlack / Epstein)
+    subgraph cluster_ancestors {
+        label="Ancestors";
+        style=dotted;
+        
+        // Create nodes for spouses
+        MorrisMuntlack [label="Morris Muntlack\nb.c. 1861, d. 1974", fillcolor=lightblue];
+        DavidMuntlack [label="David Muntlack\nb.c. 1890", fillcolor=lightblue];
+        
+        // Sam Montauk and wife
+        SamMontauk [label="Sam Muntlack (Montauk)\nb. Nov 1897, d. Oct 6, 1984", fillcolor=lightblue];
+        SadieEpstein [label="Sadie Epstein\nb. Nov 30, 1897, d. Oct 8, 1984", fillcolor=pink];
+        
+        // Invisible nodes for alignment
+        invisible1 [style=invis, shape=point, height=0];
+        
+        // Connections
+        MorrisMuntlack -> DavidMuntlack;
+        DavidMuntlack -> SamMontauk;
+        
+        // Marriage connections
+        {rank=same; SamMontauk -> invisible1 [style=invis]; invisible1 -> SadieEpstein [style=invis];}
+        SamMontauk -> SadieEpstein [dir=both, style=solid, constraint=false];
+    }
+    
+    // First generation (Ernest and Clare)
+    subgraph cluster_first_generation {
+        label="First Generation";
+        style=dotted;
+        
+        // Brill-Feldman line
+        SamuelBrill [label="Samuel Brill", fillcolor=lightblue];
+        FannieBrill [label="Fannie (Flora) Ehrenberg", fillcolor=pink];
+        
+        HarryFeldman [label="Harry Feldman\nb.c. 1886, d. May 1972", fillcolor=lightblue];
+        CeliaBrill [label="Celia Brill\nb.c. 1896, d. May 1972", fillcolor=pink];
+        
+        // Ernest and wife
+        ErnestMontauk [label="Ernest Montauk\nb. Jul 13, 1918", fillcolor=lightblue];
+        ClareFeldman [label="Clare Feldman\nb. Jun 30, 1920, d. 1963", fillcolor=pink];
+        
+        // Invisible nodes for alignment
+        invisible2 [style=invis, shape=point, height=0];
+        invisible3 [style=invis, shape=point, height=0];
+        invisible4 [style=invis, shape=point, height=0];
+        
+        // Connections to parents
+        SamMontauk -> ErnestMontauk;
+        SadieEpstein -> ErnestMontauk;
+        
+        SamuelBrill -> CeliaBrill;
+        FannieBrill -> CeliaBrill;
+        
+        CeliaBrill -> ClareFeldman;
+        HarryFeldman -> ClareFeldman;
+        
+        // Marriage connections
+        {rank=same; SamuelBrill -> invisible3 [style=invis]; invisible3 -> FannieBrill [style=invis];}
+        SamuelBrill -> FannieBrill [dir=both, style=solid, constraint=false];
+        
+        {rank=same; CeliaBrill -> invisible4 [style=invis]; invisible4 -> HarryFeldman [style=invis];}
+        CeliaBrill -> HarryFeldman [dir=both, style=solid, constraint=false];
+        
+        {rank=same; ErnestMontauk -> invisible2 [style=invis]; invisible2 -> ClareFeldman [style=invis];}
+        ErnestMontauk -> ClareFeldman [dir=both, style=solid, constraint=false];
+    }
+    
+    // Second generation (Susan and Lance)
+    subgraph cluster_second_generation {
+        label="Second Generation";
+        style=dotted;
+        
+        // Susan branch
+        SusanMontauk [label="Susan Montauk\nb. Dec 14, 1943", fillcolor=pink];
+        StanLoeb [label="Stan Loeb", fillcolor=lightblue];
+        
+        // Lance branch
+        LanceMontauk [label="Lance Montauk\nb. Oct 8, 1947", fillcolor=lightblue];
+        Krystyna [label="Krystyna\nb. Apr 22, 1956", fillcolor=pink];
+        
+        // Invisible node for alignment
+        invisible5 [style=invis, shape=point, height=0];
+        invisible6 [style=invis, shape=point, height=0];
+        
+        // Connections to parents
+        ErnestMontauk -> SusanMontauk;
+        ClareFeldman -> SusanMontauk;
+        
+        ErnestMontauk -> LanceMontauk;
+        ClareFeldman -> LanceMontauk;
+        
+        // Marriage connections
+        {rank=same; SusanMontauk -> invisible5 [style=invis]; invisible5 -> StanLoeb [style=invis];}
+        SusanMontauk -> StanLoeb [dir=both, style=solid, constraint=false];
+        
+        {rank=same; LanceMontauk -> invisible6 [style=invis]; invisible6 -> Krystyna [style=invis];}
+        LanceMontauk -> Krystyna [dir=both, style=solid, constraint=false];
+    }
+    
+    // Third generation (Dobromir and Iliana)
+    subgraph cluster_third_generation {
+        label="Third Generation";
+        style=dotted;
+        
+        // Susan's children
+        BenCoulter [label="Ben Coulter", fillcolor=lightblue];
+        Amber [label="Amber (ward)", fillcolor=pink];
+        
+        // Lance's children
+        DobromirMontauk [label="Dobromir Montauk\nb. Nov 3, 1981", fillcolor=lightblue];
+        BarbaraBeres [label="Barbara Beres\nb. Nov 14, 1984", fillcolor=pink];
+        
+        IlianaMontauk [label="Iliana Montauk\nb. Dec 24, 1982", fillcolor=pink];
+        
+        // Invisible node for alignment
+        invisible7 [style=invis, shape=point, height=0];
+        
+        // Connections to parents
+        SusanMontauk -> BenCoulter;
+        StanLoeb -> BenCoulter;
+        
+        LanceMontauk -> DobromirMontauk;
+        Krystyna -> DobromirMontauk;
+        
+        LanceMontauk -> IlianaMontauk;
+        Krystyna -> IlianaMontauk;
+        
+        // Marriage connections
+        {rank=same; DobromirMontauk -> invisible7 [style=invis]; invisible7 -> BarbaraBeres [style=invis];}
+        DobromirMontauk -> BarbaraBeres [dir=both, style=solid, constraint=false];
+        
+        {rank=same; BenCoulter -> Amber [dir=both, style=solid];}
+    }
+    
+    // Fourth generation
+    subgraph cluster_fourth_generation {
+        label="Fourth Generation";
+        style=dotted;
+        
+        // Kajetan (child of Dobromir)
+        KajetanMontauk [label="Kajetan Montauk\nb. Mar 25, 2010", fillcolor=lightblue];
+        
+        // Connections to parents
+        DobromirMontauk -> KajetanMontauk;
+        BarbaraBeres -> KajetanMontauk;
+    }
+    
+    // Rank constraints for alignment
+    {rank=same; MorrisMuntlack; SamuelBrill;}
+    {rank=same; DavidMuntlack; CeliaBrill;}
+    {rank=same; SamMontauk; SadieEpstein; HarryFeldman;}
+    {rank=same; ErnestMontauk; ClareFeldman;}
+    {rank=same; SusanMontauk; StanLoeb; LanceMontauk; Krystyna;}
+    {rank=same; BenCoulter; Amber; DobromirMontauk; BarbaraBeres; IlianaMontauk;}
+}
