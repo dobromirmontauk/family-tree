@@ -6,22 +6,53 @@ This repository contains tools to generate family tree visualizations from struc
 
 - `family_data_improved.csv` - CSV file containing the family data
 - `generate_family_tree.py` - Python script to generate DOT files for GraphViz
+- `generate_tree.sh` - Shell script for easy tree generation
 - `generated_family_tree.dot` - Generated DOT file
 - `generated_family_tree.pdf` - Rendered PDF of the family tree
 - `generated_family_tree.png` - Rendered PNG of the family tree
 
 ## How to Use
 
-1. Update the `family_data_improved.csv` file with your family information
-2. Run the generator script:
-   ```
-   python3 generate_family_tree.py
-   ```
-3. Generate visualizations using GraphViz:
-   ```
-   dot -Tpdf generated_family_tree.dot -o generated_family_tree.pdf
-   dot -Tpng generated_family_tree.dot -o generated_family_tree.png
-   ```
+### For a full family tree:
+
+```
+./generate_tree.sh
+```
+
+### For an ancestry tree (showing only a person's ancestors):
+
+```
+./generate_tree.sh "Person Name"
+```
+
+Example:
+```
+./generate_tree.sh "Kajetan Montauk"
+```
+
+This will generate:
+- `ancestry_kajetan_montauk.dot`
+- `ancestry_kajetan_montauk.pdf`
+- `ancestry_kajetan_montauk.png`
+
+### Manual usage:
+
+You can also run the Python script directly:
+
+```
+# For a full tree:
+python3 generate_family_tree.py
+
+# For ancestry tree:
+python3 generate_family_tree.py -- -- "Person Name"
+```
+
+And generate visualizations manually:
+
+```
+dot -Tpdf generated_family_tree.dot -o generated_family_tree.pdf
+dot -Tpng generated_family_tree.dot -o generated_family_tree.png
+```
 
 ## CSV Format
 

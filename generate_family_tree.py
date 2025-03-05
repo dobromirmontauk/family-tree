@@ -6,15 +6,23 @@ This script reads family data from a CSV file and generates a DOT file
 for GraphViz to visualize the family tree.
 
 Usage:
-    python generate_family_tree.py [input_csv] [output_dot]
+    python generate_family_tree.py [input_csv] [output_dot] [person_name]
 
     Default input_csv: family_data_improved.csv
     Default output_dot: generated_family_tree.dot
+    person_name: Optional. Generate only ancestors for this person
+                 If not provided, generates the full family tree
+
+Examples:
+    python generate_family_tree.py                           # Full tree
+    python generate_family_tree.py family.csv family.dot     # Custom files
+    python generate_family_tree.py -- -- "Kajetan Montauk"   # Just ancestors
 """
 
 import csv
 import sys
 import os
+import re
 from collections import defaultdict
 
 # Default filenames
@@ -93,14 +101,76 @@ def find_person_id(name, id_mapping):
     id_mapping[name] = safe_id
     return safe_id
 
-def generate_dot_file(family_data, output_filename):
-    """Generate DOT file for GraphViz."""
+def find_ancestors(family_data, person_name):
+    """Find all ancestors of the given person."""
+    # Create a dictionary of children -> parents
+    child_to_parents = defaultdict(list)
+    name_mapping = {}  # To handle case-insensitive matching
+    
+    # Fill the child_to_parents mapping
+    for person in family_data:
+        person_name_normalized = person['Full Name'].strip('"').lower()
+        name_mapping[person_name_normalized] = person['Full Name'].strip('"')
+        
+        for i in range(1, 4):  # Child 1, Child 2, Child 3
+            child_key = f'Child {i}'
+            if child_key in person and person[child_key].strip('"'):
+                child_name = person[child_key].strip('"')
+                child_name_normalized = child_name.lower()
+                name_mapping[child_name_normalized] = child_name
+                child_to_parents[child_name_normalized].append(person['Full Name'].strip('"'))
+    
+    # Search for the person (case-insensitive)
+    person_name_normalized = person_name.lower()
+    if person_name_normalized not in name_mapping:
+        close_matches = [name for name in name_mapping if person_name_normalized in name]
+        if close_matches:
+            print(f"Person '{person_name}' not found, but found similar names:")
+            for match in close_matches:
+                print(f"  - {name_mapping[match]}")
+        else:
+            print(f"Person '{person_name}' not found in the family data.")
+        return []
+    
+    # Found the person, now find all ancestors
+    actual_name = name_mapping[person_name_normalized]
+    ancestors = set()
+    
+    def add_ancestors(name):
+        name_normalized = name.lower()
+        if name_normalized in child_to_parents:
+            for parent in child_to_parents[name_normalized]:
+                parent_normalized = parent.lower()
+                if parent not in ancestors:
+                    ancestors.add(parent)
+                    add_ancestors(parent)
+    
+    # Start with the person's parents
+    add_ancestors(actual_name)
+    
+    # Add the person themselves
+    ancestors.add(actual_name)
+    
+    return list(ancestors)
+
+def generate_dot_file(family_data, output_filename, person_name=None):
+    """Generate DOT file for GraphViz.
+    
+    If person_name is provided, only include that person and their ancestors.
+    """
+    # Determine if we're generating a full tree or ancestry tree
+    ancestors = None
+    if person_name:
+        ancestors = find_ancestors(family_data, person_name)
+        if not ancestors:
+            return False
+    
     generations = organize_by_generation(family_data)
     
     # Create mapping of names to IDs
     id_mapping = {}
     for person in family_data:
-        name = person['Full Name']
+        name = person['Full Name'].strip('"')
         find_person_id(name, id_mapping)
     
     # Track marriages and parent-child relationships
@@ -109,13 +179,24 @@ def generate_dot_file(family_data, output_filename):
     
     # Find marriages and children
     for person in family_data:
-        person_id = find_person_id(person['Full Name'], id_mapping)
+        person_name = person['Full Name'].strip('"')
+        
+        # Skip if we're only showing ancestors and this person isn't one
+        if ancestors and person_name not in ancestors:
+            continue
+            
+        person_id = find_person_id(person_name, id_mapping)
         
         # Process spouses
         for i in range(1, 3):  # Spouse 1 and Spouse 2
             spouse_key = f'Spouse {i}'
             if spouse_key in person and person[spouse_key].strip('"'):
                 spouse_name = person[spouse_key].strip('"')
+                
+                # Skip if we're only showing ancestors and this spouse isn't one
+                if ancestors and spouse_name not in ancestors:
+                    continue
+                    
                 spouse_id = find_person_id(spouse_name, id_mapping)
                 
                 # Add marriage if not already added
@@ -128,6 +209,11 @@ def generate_dot_file(family_data, output_filename):
             child_key = f'Child {i}'
             if child_key in person and person[child_key].strip('"'):
                 child_name = person[child_key].strip('"')
+                
+                # Skip if we're only showing ancestors and this child isn't one
+                if ancestors and child_name not in ancestors:
+                    continue
+                    
                 child_id = find_person_id(child_name, id_mapping)
                 
                 # Add parent-child relationship
@@ -136,6 +222,8 @@ def generate_dot_file(family_data, output_filename):
     
     # Start generating the DOT file
     with open(output_filename, 'w', encoding='utf-8') as f:
+        title = "Ancestry Tree" if person_name else "Family Tree"
+        
         f.write('digraph FamilyTree {\n')
         f.write('    // Graph settings\n')
         f.write('    rankdir=TB;\n')
@@ -145,13 +233,19 @@ def generate_dot_file(family_data, output_filename):
         f.write('    \n')
         f.write('    // Title for the family tree\n')
         f.write('    labelloc="t";\n')
-        f.write('    label="Family Tree";\n')
+        f.write(f'    label="{title}";\n')
         f.write('    fontsize=24;\n')
         f.write('    \n')
         
         # Generate nodes by generation
         for gen_num, gen_people in sorted(generations.items()):
             gen_color = GENERATION_COLORS[(gen_num - 1) % len(GENERATION_COLORS)]
+            
+            # Filter people if we're only showing ancestors
+            if ancestors:
+                gen_people = [p for p in gen_people if p['Full Name'].strip('"') in ancestors]
+                if not gen_people:
+                    continue
             
             f.write(f'    // Generation {gen_num}\n')
             f.write(f'    subgraph cluster_gen{gen_num} {{\n')
@@ -163,7 +257,7 @@ def generate_dot_file(family_data, output_filename):
             
             # Add person nodes for this generation
             for person in gen_people:
-                person_id = find_person_id(person['Full Name'], id_mapping)
+                person_id = find_person_id(person['Full Name'].strip('"'), id_mapping)
                 f.write(f'{generate_person_node(person, person_id)}\n')
             
             f.write('    }\n\n')
@@ -199,26 +293,48 @@ def generate_dot_file(family_data, output_filename):
                 f.write(f'    {junction_id} -> {child_id};\n')
         
         f.write('}\n')
+        
+    return True
 
 def main():
     """Main function to run the script."""
-    # Get filenames from command-line arguments
-    input_csv = sys.argv[1] if len(sys.argv) > 1 else DEFAULT_INPUT_CSV
-    output_dot = sys.argv[2] if len(sys.argv) > 2 else DEFAULT_OUTPUT_DOT
+    # Get filenames and person name from command-line arguments
+    args = sys.argv[1:]
+    input_csv = DEFAULT_INPUT_CSV
+    output_dot = DEFAULT_OUTPUT_DOT
+    person_name = None
+    
+    # Parse arguments
+    if len(args) >= 1 and args[0] != '--':
+        input_csv = args[0]
+    if len(args) >= 2 and args[1] != '--':
+        output_dot = args[1]
+    if len(args) >= 3:
+        person_name = args[2]
     
     # Check if input file exists
     if not os.path.isfile(input_csv):
         print(f"Error: Input file '{input_csv}' not found.")
         sys.exit(1)
     
-    # Read data and generate DOT file
+    # Read data
     print(f"Reading family data from '{input_csv}'...")
     family_data = read_family_data(input_csv)
     
-    print(f"Generating DOT file '{output_dot}'...")
-    generate_dot_file(family_data, output_dot)
+    # Generate DOT file (either full tree or ancestry)
+    if person_name:
+        print(f"Generating ancestry tree for '{person_name}' to '{output_dot}'...")
+        success = generate_dot_file(family_data, output_dot, person_name)
+        if not success:
+            print(f"Failed to generate ancestry tree for '{person_name}'.")
+            sys.exit(1)
+    else:
+        print(f"Generating full family tree to '{output_dot}'...")
+        generate_dot_file(family_data, output_dot)
     
-    print("Done! To generate the PDF, run:")
+    # Success message
+    file_type = "ancestry tree" if person_name else "family tree"
+    print(f"Done! To generate the PDF of the {file_type}, run:")
     print(f"dot -Tpdf {output_dot} -o family_tree.pdf")
     print("Or to generate PNG:")
     print(f"dot -Tpng {output_dot} -o family_tree.png")

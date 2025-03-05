@@ -1,0 +1,118 @@
+digraph FamilyTree {
+    // Graph settings
+    rankdir=TB;
+    nodesep=0.8;
+    ranksep=1.2;
+    splines=ortho;
+    
+    // Title for the family tree
+    labelloc="t";
+    label="Ancestry Tree";
+    fontsize=24;
+    
+    // Generation 2
+    subgraph cluster_gen2 {
+        label="Generation 2";
+        style=filled;
+        color="#E0E0E0";
+        fontsize=16;
+
+    samuel_brill [label="Samuel Brill", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    fannie_ehrenberg [label="Fannie Ehrenberg", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    }
+
+    // Generation 3
+    subgraph cluster_gen3 {
+        label="Generation 3";
+        style=filled;
+        color="#F5F5F5";
+        fontsize=16;
+
+    sam_muntlack_montauk [label="Sam Muntlack (Montauk)\nb. Nov 1897, d. Oct 6, 1984", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    sadie_epstein [label="Sadie Epstein\nb. Nov 30, 1897, d. Oct 8, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    celia_brill [label="Celia Brill\nb. c. 1896, d. May 1972", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    harry_feldman [label="Harry Feldman\nb. c. 1886, d. May 1972", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Generation 4
+    subgraph cluster_gen4 {
+        label="Generation 4";
+        style=filled;
+        color="#FAFAFA";
+        fontsize=16;
+
+    clare_feldman [label="Clare Feldman\nb. Jun 30, 1920, d. 1963", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    ernest_montauk [label="Ernest Montauk\nb. Jul 13, 1918", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Generation 5
+    subgraph cluster_gen5 {
+        label="Generation 5";
+        style=filled;
+        color="#EEEEEE";
+        fontsize=16;
+
+    lance_montauk [label="Lance Montauk\nb. Oct 8, 1947", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    krystyna [label="Krystyna\nb. Apr 22, 1956", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Generation 6
+    subgraph cluster_gen6 {
+        label="Generation 6";
+        style=filled;
+        color="#F5F5F5";
+        fontsize=16;
+
+    dobromir_montauk [label="Dobromir Montauk\nb. Nov 3, 1981", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    barbara_beres [label="Barbara Beres\nb. Nov 14, 1984", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    }
+
+    // Generation 7
+    subgraph cluster_gen7 {
+        label="Generation 7";
+        style=filled;
+        color="#E0E0E0";
+        fontsize=16;
+
+    kajetan_montauk [label="Kajetan Montauk\nb. Mar 25, 2010", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // Invisible nodes for family connections
+    node [shape=point, width=0, height=0, style=invis, label=""];
+
+    // Marriage connections
+    edge [dir=none, style=solid, penwidth=2.0, color="#555555"];
+    sadie_epstein -> sam_muntlack_montauk;
+    fannie_ehrenberg -> samuel_brill;
+    celia_brill -> harry_feldman;
+    clare_feldman -> ernest_montauk;
+    krystyna -> lance_montauk;
+    barbara_beres -> dobromir_montauk;
+
+    // Parent-child connections
+    edge [dir=none, style=solid, penwidth=1.2, color="#000000"];
+    junction_0 [shape=point, width=0, height=0, style=invis, label=""];
+    sam_muntlack_montauk -> junction_0;
+    sadie_epstein -> junction_0;
+    junction_0 -> ernest_montauk;
+    junction_1 [shape=point, width=0, height=0, style=invis, label=""];
+    samuel_brill -> junction_1;
+    fannie_ehrenberg -> junction_1;
+    junction_1 -> celia_brill;
+    junction_2 [shape=point, width=0, height=0, style=invis, label=""];
+    celia_brill -> junction_2;
+    harry_feldman -> junction_2;
+    junction_2 -> clare_feldman;
+    junction_3 [shape=point, width=0, height=0, style=invis, label=""];
+    clare_feldman -> junction_3;
+    ernest_montauk -> junction_3;
+    junction_3 -> lance_montauk;
+    junction_4 [shape=point, width=0, height=0, style=invis, label=""];
+    lance_montauk -> junction_4;
+    krystyna -> junction_4;
+    junction_4 -> dobromir_montauk;
+    junction_5 [shape=point, width=0, height=0, style=invis, label=""];
+    dobromir_montauk -> junction_5;
+    barbara_beres -> junction_5;
+    junction_5 -> kajetan_montauk;
+}
